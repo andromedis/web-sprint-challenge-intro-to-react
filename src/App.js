@@ -23,29 +23,30 @@ const App = () => {
   }
 
   useEffect(() => {
-    // const addIds = (data) => {
-    //   return data.map(obj => {
-    //     const id = Number(obj.url.substring(28, obj.url.length - 1)) // TODO: 28 is janky, maybe take length of constants added together?
-    //     console.log(id)
-    //     console.log(obj)
-    //     debugger;
-    //     const newObj = {...obj, id: id};
-    //     console.log(id)
-    //     console.log(obj)
-    //     debugger;
-    //     return newObj;
-    //   });
-    // }
-    
-    axios.get(`https://swapi.dev/api/people/`)
+    axios.get(`${BASE_URL}${PEOPLE}`)
       .then(res =>
         setCharacters(res.data)
       )
       .catch(err =>
         console.log(err)
       )
-    // setCharacters(addIds(characters));
   }, []);
+
+  // useEffect(() => {
+  //   const addIds = (data) => {
+  //     return data.map(obj => {
+  //       const id = Number(obj.url.substring(28, obj.url.length - 1)) // TODO: 28 is janky, maybe take length of constants added together?
+  //       console.log(id)
+  //       console.log(obj)
+  //       debugger;
+  //       const newObj = {...obj, id: id};
+  //       console.log(id)
+  //       console.log(obj)
+  //       debugger;
+  //       return newObj;
+  //     });
+  //   }
+  // }, [characters]);
 
   return (
     <div className="App">

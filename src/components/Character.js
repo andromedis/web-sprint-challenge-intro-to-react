@@ -2,12 +2,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Character({ char }) {
-    
+const StyledCharacter = styled.div`
+    background-color: white;
+`
+
+function Character(props) {
+    const { char } = props;
     return (
-        <p>
+        <StyledCharacter>
             {char.name};
-        </p>
+        </StyledCharacter>
     )
 }
 
