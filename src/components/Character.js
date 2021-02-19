@@ -5,11 +5,15 @@ import styled from 'styled-components';
 const StyledCharacter = styled.div`
   background-color: white;
   margin: 1rem auto;
-  width: 50%;
+  width: 94%;
 
-  // * {
-  //   border: 1px solid black;
-  // }
+  @media (min-width: 700px) {
+    width: 80%;
+  }
+
+  @media (min-width: 900px) {
+    width: 50%;
+  }
 
   .expand-bar {
     display: flex;
