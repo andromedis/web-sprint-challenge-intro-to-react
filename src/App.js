@@ -14,14 +14,6 @@ const App = () => {
   const [characters, setCharacters] = useState([]);
   const [displayId, setDisplayId] = useState([]);
 
-  const openDetails = (id) => {
-    setDisplayId(id);
-  }
-
-  const closeDetails = () => {
-    setDisplayId(null);
-  }
-
   useEffect(() => {
     axios.get(`${BASE_URL}${PEOPLE}`)
       .then(res =>
@@ -32,31 +24,17 @@ const App = () => {
       )
   }, []);
 
-  // useEffect(() => {
-  //   const addIds = (data) => {
-  //     return data.map(obj => {
-  //       const id = Number(obj.url.substring(28, obj.url.length - 1)) // TODO: 28 is janky, maybe take length of constants added together?
-  //       console.log(id)
-  //       console.log(obj)
-  //       debugger;
-  //       const newObj = {...obj, id: id};
-  //       console.log(id)
-  //       console.log(obj)
-  //       debugger;
-  //       return newObj;
-  //     });
-  //   }
-  // }, [characters]);
+
 
   return (
     <div className="App">
       <h1 className="Header">Characters</h1>
       {
-        console.log(characters[0])
-      }
-      {
         characters.map(char => {
-          return <Character key={char.url} char={char}/>
+          return <Character key={char.url} 
+                            char={char} 
+                            displayId={displayId} 
+                            setDisplayId={setDisplayId} />
         })
       }
     </div>
