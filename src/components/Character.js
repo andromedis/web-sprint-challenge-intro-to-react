@@ -1,6 +1,7 @@
 // Write your Character component here
 import React from 'react';
 import styled from 'styled-components';
+import Details from './Details';
 
 const StyledCharacter = styled.div`
   background-color: white;
@@ -23,13 +24,6 @@ const StyledCharacter = styled.div`
     padding: 0 1rem;
   }
 
-  .details {
-    text-align: left;
-    padding: 0 1rem;
-    padding-bottom: 1px;
-    border-top: 1px solid gray;
-  }
-
   .expand-button {
     font-size: 150%;
   }  
@@ -37,7 +31,8 @@ const StyledCharacter = styled.div`
 
 function Character(props) {
   const { char, displayId, setDisplayId } = props;
-  const charId = Number(char.url.substring(28, char.url.length - 1)) // TODO: 28 is janky, maybe take length of constants added together?
+  
+  const charId = Number(char.url.substring(28, char.url.length - 1))
 
   const openDetails = (id) => {
     setDisplayId(id);
@@ -51,21 +46,14 @@ function Character(props) {
     <StyledCharacter>
       <div className='expand-bar'>
         <h3>{char.name}</h3>
-        <div className='expand-button' onClick={() => displayId == charId ? closeDetails() : openDetails(charId)}>
-          { displayId == charId ? '–' : '+' }
+        <div className='expand-button' onClick={() => displayId === charId ? closeDetails() : openDetails(charId)}>
+          { 
+            displayId === charId ? '–' : '+' 
+          }
         </div>
       </div>
       { 
-        displayId== charId &&
-          <div className='details'>
-            { char.birth_year != 'n/a' && <p>Born: {char.birth_year}</p> }
-            { char.gender != 'n/a' && <p>Gender: {char.gender}</p> }
-            { char.height != 'n/a' && <p>Height: {char.height} cm</p> }
-            { char.mass != 'n/a' && <p>Mass: {char.mass} kg</p> }
-            { char.hair_color != 'n/a' && <p>Hair color: {char.hair_color}</p> }
-            { char.eye_color != 'n/a' && <p>Eye color: {char.eye_color}</p> }
-            { char.skin_color != 'n/a' && <p>Skin color: {char.skin_color}</p> }
-          </div>
+        displayId === charId && <Details char={char}/>
       }
     </StyledCharacter>
   )
