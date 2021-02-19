@@ -48,9 +48,7 @@ function Character(props) {
       <div className='expand-bar'>
         <h3>{char.name}</h3>
         <div className='expand-button' onClick={() => displayId == charId ? closeDetails() : openDetails(charId)}>
-          {
-            displayId == charId ? '–' : '+'
-          }
+          { displayId == charId ? '–' : '+' }
         </div>
       </div>
       { 
