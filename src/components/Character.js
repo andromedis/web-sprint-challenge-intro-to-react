@@ -7,6 +7,10 @@ const StyledCharacter = styled.div`
   margin: 1rem auto;
   width: 50%;
 
+  // * {
+  //   border: 1px solid black;
+  // }
+
   .expand-bar {
     display: flex;
     flex-flow: row nowrap;
@@ -14,6 +18,17 @@ const StyledCharacter = styled.div`
     align-items: center;
     padding: 0 1rem;
   }
+
+  .details {
+    text-align: left;
+    padding: 0 1rem;
+    padding-bottom: 1px;
+    border-top: 1px solid gray;
+  }
+
+  .expand-button {
+    font-size: 150%;
+  }  
 `
 
 function Character(props) {
@@ -34,15 +49,20 @@ function Character(props) {
         <h3>{char.name}</h3>
         <div className='expand-button' onClick={() => displayId == charId ? closeDetails() : openDetails(charId)}>
           {
-            displayId == charId ? '-' : '+'
+            displayId == charId ? '–' : '+'
           }
         </div>
       </div>
       { 
         displayId== charId &&
           <div className='details'>
-            <p>Height: {char.height} cm</p>
-            <p>Mass: {char.mass} kg</p>
+            { char.birth_year != 'n/a' && <p>Born: {char.birth_year}</p> }
+            { char.gender != 'n/a' && <p>Gender: {char.gender}</p> }
+            { char.height != 'n/a' && <p>Height: {char.height} cm</p> }
+            { char.mass != 'n/a' && <p>Mass: {char.mass} kg</p> }
+            { char.hair_color != 'n/a' && <p>Hair color: {char.hair_color}</p> }
+            { char.eye_color != 'n/a' && <p>Eye color: {char.eye_color}</p> }
+            { char.skin_color != 'n/a' && <p>Skin color: {char.skin_color}</p> }
           </div>
       }
     </StyledCharacter>
