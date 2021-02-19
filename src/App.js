@@ -23,6 +23,9 @@ const App = () => {
 
   useEffect(() => {
     axios
+      .get(`https://swapi.dev/api/people/`)
+      .then()
+      .catch()
   })
 
   return (
